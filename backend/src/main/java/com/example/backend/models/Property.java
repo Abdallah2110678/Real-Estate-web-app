@@ -44,7 +44,7 @@ public class Property {
     private PropertyType type;
     
     @Positive(message = "Area must be positive")
-    private Integer area; // in square meters
+    private Integer area;
     
     private Integer bedrooms;
     
@@ -59,7 +59,6 @@ public class Property {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
     
-    // Relationships
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<PropertyImage> images;
@@ -71,8 +70,7 @@ public class Property {
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<PropertyView> views;
-    
-    // Enums
+        
     public enum PropertyType {
         APARTMENT, VILLA, COMMERCIAL, LAND
     }
