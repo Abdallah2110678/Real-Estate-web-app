@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.security.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,29 +15,22 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PropertyView {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
+    
+    @Column(name = "property_idd", nullable = false)
+    private Integer propertyId;
     
     @CreationTimestamp
-    @Column(name = "viewed_at", nullable = false)
-    private LocalDateTime viewedAt;
+    @Column(name = "viewed_at")
+    private Timestamp viewedAt;
     
     @Column(name = "ip_address", length = 50)
     private String ipAddress;
-    
-    @Column(name = "user_agent")
-    private String userAgent;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "property_id", nullable = false)
     @JsonBackReference
     private Property property;
-    
-    public PropertyView(String ipAddress, String userAgent, Property property) {
-        this.ipAddress = ipAddress;
-        this.userAgent = userAgent;
-        this.property = property;
-    }
 }

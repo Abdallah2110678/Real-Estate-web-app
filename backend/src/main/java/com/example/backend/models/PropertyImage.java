@@ -12,30 +12,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PropertyImage {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     
-    @NotBlank(message = "File path is required")
-    @Column(name = "file_path", nullable = false)
-    private String filePath;
+    @Column(name = "property_idd", nullable = false)
+    private Integer propertyId;
     
-    @Column(name = "file_name")
-    private String fileName;
-    
-    @Column(name = "file_size")
-    private Long fileSize;
-    
+    @Column(name = "file_path", length = 255, nullable = false)
+    private String filePath; 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "property_id", nullable = false)
     @JsonBackReference
     private Property property;
-    
-    public PropertyImage(String filePath, String fileName, Long fileSize, Property property) {
-        this.filePath = filePath;
-        this.fileName = fileName;
-        this.fileSize = fileSize;
-        this.property = property;
-    }
 }

@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PropertyFileRepository extends JpaRepository<PropertyFile, Long> {
-    List<PropertyFile> findByPropertyId(Long propertyId);
-    Optional<PropertyFile> findByPropertyIdAndFileType(Long propertyId, String fileType);
-    void deleteByPropertyId(Long propertyId);
+public interface PropertyFileRepository extends JpaRepository<PropertyFile, Integer> {
+    List<PropertyFile> findByPropertyId(Integer propertyId);
 }
