@@ -5,12 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.backend.model.PropertyView;
-import com.example.backend.model.Property;
-import com.example.backend.repository.PropertyRepository;
+
 import com.example.backend.repository.PropertyViewRepository;
 
-import java.time.LocalDateTime;
-import java.util.List;
+
 @Service
 @Transactional
 public class PropertyViewService {
