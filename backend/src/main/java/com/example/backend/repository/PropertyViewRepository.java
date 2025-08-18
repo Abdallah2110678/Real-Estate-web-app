@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.backend.models.PropertyView;
+import com.example.backend.model.PropertyView;
 
 import java.time.LocalDateTime;
 import java.util.List;

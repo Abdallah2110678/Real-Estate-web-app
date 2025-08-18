@@ -1,4 +1,4 @@
-package com.example.backend.models;
+package com.example.backend.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.backend.models.PropertyFile;
-import com.example.backend.models.PropertyImage;
+import com.example.backend.model.PropertyFile;
+import com.example.backend.model.PropertyImage;
 import com.example.backend.service.PropertyFileService;
 import com.example.backend.service.PropertyImageService;
 

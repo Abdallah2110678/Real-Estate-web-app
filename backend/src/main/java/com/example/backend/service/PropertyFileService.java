@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.backend.models.Property;
-import com.example.backend.models.PropertyFile;
+import com.example.backend.model.PropertyFile;
+import com.example.backend.model.Property;
 import com.example.backend.repository.PropertyFileRepository;
 import com.example.backend.repository.PropertyRepository;
 

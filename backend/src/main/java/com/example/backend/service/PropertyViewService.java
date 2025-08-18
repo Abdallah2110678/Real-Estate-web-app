@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.backend.models.Property;
-import com.example.backend.models.PropertyView;
+import com.example.backend.model.PropertyView;
+import com.example.backend.model.Property;
 import com.example.backend.repository.PropertyRepository;
 import com.example.backend.repository.PropertyViewRepository;
 
