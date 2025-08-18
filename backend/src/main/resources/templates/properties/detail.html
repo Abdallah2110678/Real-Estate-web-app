@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" th:replace="fragments/_layout :: layout(~{::title}, ~{::section})">
+<title th:text="${property.title}">Property</title>
+
+<section>
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <div id="carousel" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item" th:classappend="${iterStat.index==0}? 'active'"
+               th:each="img, iterStat : ${images}">
+            <img class="d-block w-100 rounded" th:src="${img.url}" alt="image">
+          </div>
+          <div class="carousel-item active" th:if="${#lists.isEmpty(images)}">
+            <img class="d-block w-100 rounded" src="/img/placeholder.png" alt="image">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="col-lg-5">
+      <h2 class="h4" th:text="${property.title}">Modern Apartment</h2>
+      <p class="text-muted mb-1">
+        <strong th:text="${#numbers.formatDecimal(property.price,0,'COMMA',2,'POINT')} + ' EGP'">1,500,000 EGP</strong>
+        • <span th:text="${property.location}">New Cairo</span>
+      </p>
+      <p class="mb-2">
+        <span class="badge text-bg-secondary" th:text="${property.type}">apartment</span>
+        <span class="badge text-bg-secondary" th:text="${property.area} + ' m²'">120 m²</span>
+        <span class="badge text-bg-secondary" th:text="${property.bedrooms} + ' bd'">3 bd</span>
+        <span class="badge" th:classappend="${property.status=='available'}? 'text-bg-success' : 'text-bg-danger'"
+              th:text="${property.status}">available</span>
+      </p>
+      <p th:text="${property.description}">
+        Spacious, sunlight, great neighborhood…
+      </p>
+
+      <div class="d-flex gap-2 mt-3">
+        <a class="btn btn-outline-primary"
+           th:if="${brochureUrl}"
+           th:href="${brochureUrl}" download>Download Brochure (PDF)</a>
+
+        <a class="btn btn-primary" th:href="@{'/properties/edit/' + ${property.id}}">Edit</a>
+        <form method="post" th:action="@{'/properties/' + ${property.id} + '/delete'}"
+              onsubmit="return confirm('Delete this listing?')">
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</html>

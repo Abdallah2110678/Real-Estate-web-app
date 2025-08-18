@@ -1,0 +1,57 @@
+<!—- Listings page —>
+<!DOCTYPE html>
+<html
+  lang="en"
+  th:replace="fragments/_layout :: layout(~{::title}, ~{::section})"
+>
+  <title>Browse Properties</title>
+
+  <section>
+    <h1 class="h3 mb-3">Browse Properties</h1>
+    <div th:replace="fragments/_filters :: filters"></div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-1">
+      <div class="col" th:each="p : ${properties}">
+        <div class="card h-100 shadow-sm">
+          <img
+            th:if="${p.coverImageUrl}"
+            th:src="${p.coverImageUrl}"
+            class="card-img-top"
+            alt="property"
+          />
+          <img
+            th:if="${!p.coverImageUrl}"
+            src="/img/placeholder.png"
+            class="card-img-top"
+            alt="property"
+          />
+          <div class="card-body">
+            <h5
+              class="card-title d-flex justify-content-between align-items-center"
+            >
+              <span th:text="${p.title}">Modern Apartment</span>
+              <span
+                class="badge text-bg-success"
+                th:text="${#numbers.formatDecimal(p.price, 0, 'COMMA', 2, 'POINT')} + ' EGP'"
+                >1,500,000 EGP</span
+              >
+            </h5>
+            <p class="card-text small text-muted">
+              <span th:text="${p.location}">New Cairo</span> •
+              <span th:text="${p.type}">apartment</span> •
+              <span th:text="${p.area} + ' m²'">120 m²</span> •
+              <span th:text="${p.bedrooms} + ' bd'">3 bd</span>
+            </p>
+            <a
+              class="btn btn-outline-primary btn-sm"
+              th:href="@{'/properties/' + ${p.id}}"
+              >View details</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div th:replace="fragments/_pagination :: pager(${page})"></div>
+  </section>
+</html>

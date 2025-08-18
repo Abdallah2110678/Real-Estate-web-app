@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" th:replace="fragments/_layout :: layout(~{::title}, ~{::section})">
+<title>Admin Dashboard</title>
+
+<section>
+  <h1 class="h4 mb-4">Dashboard</h1>
+  <div class="row g-3">
+    <div class="col-md-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-muted small">Total Properties</div>
+          <div class="fs-4 fw-bold" th:text="${stats.totalProperties}">0</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-muted small">Total Agents</div>
+          <div class="fs-4 fw-bold" th:text="${stats.totalAgents}">0</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="text-muted small mb-2">Top Viewed (7 days)</div>
+          <ol class="mb-0" th:if="${topViewed}">
+            <li th:each="p : ${topViewed}">
+              <a th:href="@{'/properties/' + ${p.id}}" th:text="${p.title}">Property</a>
+              <span class="text-muted small" th:text="' • ' + ${p.views} + ' views'"></span>
+            </li>
+          </ol>
+          <div th:if="${#lists.isEmpty(topViewed)}" class="text-muted">No data yet.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="h6 mt-4">Recently Added</h2>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center"
+        th:each="p : ${recent}">
+      <span>
+        <a th:href="@{'/properties/' + ${p.id}}" th:text="${p.title}">Property</a>
+        <span class="text-muted small" th:text="'• ' + ${p.location}"></span>
+      </span>
+      <span class="badge text-bg-light" th:text="${#temporals.format(p.createdAt, 'yyyy-MM-dd')}">2025-08-17</span>
+    </li>
+  </ul>
+</section>
+</html>

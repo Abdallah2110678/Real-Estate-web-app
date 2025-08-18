@@ -1,0 +1,60 @@
+<section th:fragment="filters">
+  <form class="row g-3 align-items-end" method="get" action="/">
+    <div class="col-md-3">
+      <label class="form-label">Location</label>
+      <input
+        class="form-control"
+        name="location"
+        th:value="${param.location}"
+      />
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Type</label>
+      <select class="form-select" name="type">
+        <option value="">Any</option>
+        <option th:selected="${param.type=='apartment'}" value="apartment">
+          Apartment
+        </option>
+        <option th:selected="${param.type=='villa'}" value="villa">
+          Villa
+        </option>
+        <option th:selected="${param.type=='commercial'}" value="commercial">
+          Commercial
+        </option>
+        <option th:selected="${param.type=='land'}" value="land">Land</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Min Price</label>
+      <input
+        type="number"
+        class="form-control"
+        name="minPrice"
+        th:value="${param.minPrice}"
+      />
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">Max Price</label>
+      <input
+        type="number"
+        class="form-control"
+        name="maxPrice"
+        th:value="${param.maxPrice}"
+      />
+    </div>
+    <div class="col-md-1">
+      <label class="form-label">Beds</label>
+      <input
+        type="number"
+        min="0"
+        class="form-control"
+        name="bedrooms"
+        th:value="${param.bedrooms}"
+      />
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-primary w-100">Search</button>
+    </div>
+  </form>
+</section>
+    
